@@ -28,10 +28,10 @@ def handle_command(msg_text, sender_number):
 
     if msg_text.lower().strip() == 'where are you':
         gpsobj = Gps()
-        latlong = gpsobj.getCurrentLocation()
+        latlong = gpsobj.get_current_location()
         mapobj = GoogleMaps(latlong['lat'], latlong['long'])
         modem = Sms()
-        modem.sendSMS(mapobj.getMapsUrl(), sender_number)
+        modem.send_sms(mapobj.getMapsUrl(), sender_number)
 
         del gpsobj
         del mapobj

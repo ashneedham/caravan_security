@@ -1,6 +1,7 @@
 import gps
 import threading
 
+
 class Gps(threading.Thread):
     currentLat = '0.0'
     currentLong = '0.0'
@@ -38,7 +39,7 @@ class Gps(threading.Thread):
             except StopIteration:
                 self.gpsd = None
 
-    def getCurrentLocation(self):
+    def get_current_location(self):
         return {'lat': self.currentLat, 'long': self.currentLong}
 
     def stop(self):

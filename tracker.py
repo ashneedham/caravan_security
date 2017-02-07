@@ -5,7 +5,7 @@ import sys
 
 print('Booting GPS...')
 gpsObj = Gps()
-latLong = gpsObj.getCurrentLocation()
+latLong = gpsObj.get_current_location()
 print(latLong)
 mapObj = GoogleMaps(latLong['lat'], latLong['long'])
 print(mapObj.getMapsUrl())
