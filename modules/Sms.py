@@ -1,6 +1,6 @@
 import gammu.smsd
 import threading
-import sys
+
 
 class Sms(threading.Thread):
     modem = None
@@ -9,7 +9,7 @@ class Sms(threading.Thread):
         threading.Thread.__init__(self)
         self.modem = gammu.smsd.SMSD('/etc/gammu-smsdrc')
 
-    def sendSMS(self, text, number):
+    def send_sms(self, text, number):
         message = {
             'Text': text,
             'SMSC': {'Location': 1},
