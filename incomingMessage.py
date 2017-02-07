@@ -31,7 +31,7 @@ def handle_command(msg_text, sender_number):
         latlong = gpsobj.get_current_location()
         mapobj = GoogleMaps(latlong['lat'], latlong['long'])
         modem = Sms()
-        modem.send_sms(mapobj.getMapsUrl(), sender_number)
+        modem.send_sms(mapobj.get_maps_url(), sender_number)
 
         del gpsobj
         del mapobj
