@@ -2,6 +2,7 @@ from modules.Gps import Gps
 from modules.GoogleMaps import GoogleMaps
 from modules.Sms import Sms
 import os
+import config
 
 
 def get_message():
@@ -38,5 +39,10 @@ def handle_command(msg_text, sender_number):
         del modem
 
 
+def validate_senders_number(senders_number):
+    return senders_number in config.settings['allowed_numbers']
+
+
 number, text = get_message()
-handle_command(text, number)
+if validate_senders_number(number):
+    handle_command(text, number)
