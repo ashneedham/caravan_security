@@ -2,8 +2,6 @@ from modules.Gps import Gps
 from modules.GoogleMaps import GoogleMaps
 from modules.Sms import Sms
 import os
-import logging
-import datetime
 
 def getMessage():
     number = os.environ['SMS_1_NUMBER']
@@ -40,6 +38,3 @@ def handleCommand(text, number):
 
 number, text = getMessage()
 handleCommand(text, number)
-
-logging.basicConfig(filename='/home/pi/Projects/CaravanSecurity/Source/example.log',level=logging.DEBUG)
-logging.info('incomingMessage ran ' + str(datetime.date.today()) + ' ' + str(datetime.datetime.now().time()) + ' ' + number + ' ' + text)
