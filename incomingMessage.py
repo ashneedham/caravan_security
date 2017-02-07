@@ -3,38 +3,40 @@ from modules.GoogleMaps import GoogleMaps
 from modules.Sms import Sms
 import os
 
-def getMessage():
-    number = os.environ['SMS_1_NUMBER']
+
+def get_message():
+    sender_number = os.environ['SMS_1_NUMBER']
 
     # Are there any decoded parts?
     numparts = int(os.environ['DECODED_PARTS'])
 
     if numparts:
         # Get all text parts
-        text = ''
+        msg_text = ''
         for i in range(0, numparts):
             varname = 'DECODED_%d_TEXT' % i
             if varname in os.environ:
-                text = text + os.environ[varname]
+                msg_text = msg_text + os.environ[varname]
     else:
-        text = os.environ['SMS_1_TEXT']
+        msg_text = os.environ['SMS_1_TEXT']
 
-    text = text.decode('UTF-8')
-    return number, text
+    msg_text = msg_text.decode('UTF-8')
+    return sender_number, msg_text
 
-def handleCommand(text, number):
 
-    if text.lower().strip() == 'where are you':
-        gpsObj = Gps()
-        latLong = gpsObj.getCurrentLocation()
-        mapObj = GoogleMaps(latLong['lat'], latLong['long'])
+def handle_command(msg_text, sender_number):
+
+    if msg_text.lower().strip() == 'where are you':
+        gpsobj = Gps()
+        latlong = gpsobj.getCurrentLocation()
+        mapobj = GoogleMaps(latlong['lat'], latlong['long'])
         modem = Sms()
-        modem.sendSMS(mapObj.getMapsUrl(), number)
+        modem.sendSMS(mapobj.getMapsUrl(), sender_number)
 
-        del gpsObj
-        del mapObj
+        del gpsobj
+        del mapobj
         del modem
 
 
-number, text = getMessage()
-handleCommand(text, number)
+number, text = get_message()
+handle_command(text, number)
