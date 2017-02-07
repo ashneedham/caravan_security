@@ -11,7 +11,7 @@ mapObj = GoogleMaps(latLong['lat'], latLong['long'])
 print(mapObj.get_maps_url())
 modem = Sms()
 print('Sending SMS...')
-modem.sendSMS(mapObj.get_maps_url(), '07846347904')
+modem.send_sms(mapObj.get_maps_url(), '07846347904')
 del gpsObj
 del mapObj
 del modem
