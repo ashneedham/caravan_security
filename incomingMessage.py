@@ -26,8 +26,9 @@ def get_message():
 
 
 def handle_command(msg_text, sender_number):
+    stripped_text = msg_text.lower().strip()
 
-    if msg_text.lower().strip() == 'where are you':
+    if stripped_text == 'where are you':
         gpsobj = Gps()
         latlong = gpsobj.get_current_location()
         mapobj = GoogleMaps(latlong['lat'], latlong['long'])
